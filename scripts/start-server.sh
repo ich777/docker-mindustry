@@ -56,7 +56,6 @@ else
 		if wget https://github.com/Anuken/Mindustry/releases/download/v${GAME_V}/server-release.jar ; then
 	    	echo "---Sucessfully downloaded Mindustry---"
     	   	touch mindustryinstalled-v$GAME_V
-            rm ${DATA_DIR}/.wget-hsts
     	else
     		echo "---Something went wrong, can't download Mindustry, putting server in sleep mode---"
         	sleep infinity
@@ -67,6 +66,9 @@ else
 fi
 
 echo "---Preparing Server---"
+if [ -f ${DATA_DIR}/.wget-hsts ]; then
+	rm ${DATA_DIR}/.wget-hsts
+fi
 echo "---Checking for old logs---"
 find ${DATA_DIR} -name "masterLog.*" -exec rm -f {} \;
 
