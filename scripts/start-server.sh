@@ -74,6 +74,7 @@ find ${DATA_DIR} -name "masterLog.*" -exec rm -f {} \;
 chmod -R 777 ${DATA_DIR}
 
 echo "---Starting Server---"
+cd ${DATA_DIR}
 screen -S Mindustry -L -Logfile ${DATA_DIR}/masterLog.0 -d -m ${DATA_DIR}/runtime/${RUNTIME_NAME}/bin/java -jar ${DATA_DIR}/server-release.jar name ${SRV_NAME},host,${GAME_PARAMS}
 sleep 5
 tail -F ${DATA_DIR}/masterLog.0
