@@ -3,7 +3,7 @@ FROM ubuntu
 MAINTAINER ich777
 
 RUN apt-get update
-RUN apt-get -y install wget curl
+RUN apt-get -y install wget curl screen
 
 ENV DATA_DIR=/mindustry
 ENV GAME_V=
