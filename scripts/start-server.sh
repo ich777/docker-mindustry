@@ -42,7 +42,6 @@ if [ -z "$CUR_V" ]; then
     if wget https://github.com/Anuken/Mindustry/releases/download/v$GAME_V/server-release.jar ; then
     	echo "---Sucessfully downloaded Mindustry---"
        	touch mindustryinstalled-v$GAME_V
-        rm ${DATA_DIR}/.wget-hst
     else
     	echo "---Something went wrong, can't download Mindustry, putting server in sleep mode---"
        	sleep infinity
@@ -76,4 +75,5 @@ chmod -R 777 ${DATA_DIR}
 
 echo "---Starting Server---"
 screen -S Mindustry -L -Logfile ${DATA_DIR}/masterLog.0 -d -m ${DATA_DIR}/runtime/${RUNTIME_NAME}/bin/java -jar ${DATA_DIR}/server-release.jar name ${SRV_NAME} host ${GAME_PARAMS}
+sleep 5
 tail -F ${DATA_DIR}/masterLog.0
