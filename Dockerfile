@@ -6,7 +6,10 @@ RUN apt-get update
 RUN apt-get -y install wget curl screen
 
 ENV DATA_DIR=/mindustry
-ENV GAME_V=
+ENV GAME_V="latest"
+ENV SRV_NAME="DockerMindustry"
+ENV GAME_PARAMS=""
+ENV RUNTIME_NAME="jre1.8.0_211"
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
