@@ -12,17 +12,22 @@ if [ ! -d ${DATA_DIR}/runtime ]; then
 	echo "---'runtime' folder not found, creating...---"
 	mkdir ${DATA_DIR}/runtime
 else
-	echo "---"runtime" folder found---"
+	echo "---'runtime' folder found---"
 fi
 
 echo "---Checking if Runtime is installed---"
-if [ -z "$(find ${DATA_DIR} -name jre*)" ]; then
-    if [ "${RUNTIME_NAME}" == "jre1.8.0_211" ]; then
+if [ -z "$(find ${DATA_DIR}/runtime -name jre*)" ]; then
+    if [ "${RUNTIME_NAME}" == "basicjre" ]; then
     	echo "---Downloading and installing Runtime---"
 		cd ${DATA_DIR}/runtime
-		wget -qi ${RUNTIME_NAME} https://github.com/ich777/docker-minecraft-basic-server/raw/master/runtime/8u211.tar.gz
-        tar --directory ${DATA_DIR}/runtime -xvzf ${DATA_DIR}/runtime/8u211.tar.gz
-        rm -R ${DATA_DIR}/runtime/8u211.tar.gz
+		if wget -q -nc --show-progress --progress=bar:force:noscroll https://github.com/ich777/runtimes/raw/master/jre/basicjre.tar.gz ; then
+			echo "---Successfully downloaded Runtime!---"
+		else
+			echo "---Something went wrong, can't download Runtime, putting server in sleep mode---"
+			sleep infinity
+		fi
+        tar --directory ${DATA_DIR}/runtime -xvzf ${DATA_DIR}/runtime/basicjre.tar.gz
+        rm -R ${DATA_DIR}/runtime/basicjre.tar.gz
     else
     	if [ ! -d ${DATA_DIR}/runtime/${RUNTIME_NAME} ]; then
         	echo "---------------------------------------------------------------------------------------------"
@@ -39,7 +44,7 @@ echo "---Checking for Mindustry Server executable ---"
 if [ -z "$CUR_V" ]; then
     cd ${DATA_DIR}
    	echo "---Mindustry Server not found, downloading v${GAME_V}---"
-    if wget https://github.com/Anuken/Mindustry/releases/download/v$GAME_V/server-release.jar ; then
+    if wget -q -nc --show-progress --progress=bar:force:noscroll https://github.com/Anuken/Mindustry/releases/download/v$GAME_V/server-release.jar ; then
     	echo "---Sucessfully downloaded Mindustry---"
        	touch mindustryinstalled-v$GAME_V
     else
@@ -52,7 +57,7 @@ else
     	rm ${DATA_DIR}/mindustryinstalled-v${CUR_V}
         rm ${DATA_DIR}/server-release.jar
 		cd ${DATA_DIR}
-		if wget https://github.com/Anuken/Mindustry/releases/download/v${GAME_V}/server-release.jar ; then
+		if wget -q -nc --show-progress --progress=bar:force:noscroll https://github.com/Anuken/Mindustry/releases/download/v${GAME_V}/server-release.jar ; then
 	    	echo "---Sucessfully downloaded Mindustry---"
     	   	touch mindustryinstalled-v$GAME_V
     	else
