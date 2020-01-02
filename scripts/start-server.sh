@@ -17,7 +17,7 @@ fi
 
 echo "---Checking if Runtime is installed---"
 if [ -z "$(find ${DATA_DIR}/runtime -name jre*)" ]; then
-    if [ "${RUNTIME_NAME}" == "basicjre" ]; then
+    if [ "${RUNTIME_NAME}" == "jre1.8.0_231" ]; then
     	echo "---Downloading and installing Runtime---"
 		cd ${DATA_DIR}/runtime
 		if wget -q -nc --show-progress --progress=bar:force:noscroll https://github.com/ich777/runtimes/raw/master/jre/basicjre.tar.gz ; then
