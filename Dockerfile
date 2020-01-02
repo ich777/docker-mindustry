@@ -1,28 +1,28 @@
-FROM ubuntu
+FROM ich777/debian-baseimage
 
-MAINTAINER ich777
+LABEL maintainer="admin@minenet.at"
 
-RUN apt-get update
-RUN apt-get -y install wget curl screen
+RUN apt-get update && \
+	apt-get -y install --no-install-recommends curl screen && \
+	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR=/mindustry
 ENV GAME_V="latest"
 ENV SRV_NAME="DockerMindustry"
 ENV GAME_PARAMS=""
-ENV RUNTIME_NAME="jre1.8.0_211"
+ENV RUNTIME_NAME="basicjre"
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
 
-RUN mkdir $DATA_DIR
-RUN useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID mindustry
-RUN chown -R mindustry $DATA_DIR
-
-RUN ulimit -n 2048
+RUN mkdir $DATA_DIR && \
+	useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID mindustry && \
+	chown -R mindustry $DATA_DIR && \
+	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
-RUN chmod -R 770 /opt/scripts/
-RUN chown -R mindustry /opt/scripts
+RUN chmod -R 770 /opt/scripts/ && \
+	chown -R mindustry /opt/scripts
 
 USER mindustry
 
