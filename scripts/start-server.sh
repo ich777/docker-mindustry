@@ -70,6 +70,7 @@ else
 fi
 
 echo "---Preparing Server---"
+export RUNTIME_NAME="$(ls -d ${DATA_DIR}/runtime/* | cut -d '/' -f4)"
 if [ -f ${DATA_DIR}/.wget-hsts ]; then
 	rm ${DATA_DIR}/.wget-hsts
 fi
