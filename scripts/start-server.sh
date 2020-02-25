@@ -4,8 +4,6 @@ LAT_V="$(curl -s https://api.github.com/repos/Anuken/Mindustry/releases/latest |
 if [ "${GAME_V}" == "latest" ]; then
 	GAME_V=$LAT_V
 fi
-echo "---Setting umask to ${UMASK}---"
-umask ${UMASK}
 
 echo "---Checking for 'runtime' folder---"
 if [ ! -d ${DATA_DIR}/runtime ]; then
@@ -77,7 +75,7 @@ fi
 echo "---Checking for old logs---"
 find ${DATA_DIR} -name "masterLog.*" -exec rm -f {} \;
 
-chmod -R 777 ${DATA_DIR}
+chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting Server---"
 cd ${DATA_DIR}
