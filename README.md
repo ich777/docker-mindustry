@@ -23,7 +23,7 @@ docker run --name MinecraftBasicServer -d \
 	-p 6567:6567 -p 6567:6567/udp \
 	--env 'RUNTIME_NAME=jre1.8.0_211' \
 	--env 'GAME_V=latest' \
-    --env 'SRV_NAME=DockerMindustry' \
+	--env 'SRV_NAME=DockerMindustry' \
 	--env 'UMASK=000' \
 	--env 'UID=99' \
 	--env 'GID=100' \
