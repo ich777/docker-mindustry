@@ -19,7 +19,7 @@ UPDATE NOTICE: If you set the GAME_V to 'latest' the container will always check
 
 ## Run example
 ```
-docker run --name MinecraftBasicServer -d \
+docker run --name Mindustry -d \
 	-p 6567:6567 -p 6567:6567/udp \
 	--env 'RUNTIME_NAME=jre1.8.0_211' \
 	--env 'GAME_V=latest' \
