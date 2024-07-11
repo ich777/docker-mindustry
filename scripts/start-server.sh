@@ -68,6 +68,11 @@ else
 fi
 
 echo "---Preparing Server---"
+if [ ! -f ~/.screenrc ]; then
+    echo "defscrollback 30000
+bindkey \"^C\" echo 'Blocked. Please use to command \"exit\" to shutdown the server or close this window to exit the terminal.'" > ~/.screenrc
+fi
+
 export RUNTIME_NAME="$(ls -d ${DATA_DIR}/runtime/* | cut -d '/' -f4)"
 if [ -f ${DATA_DIR}/.wget-hsts ]; then
 	rm ${DATA_DIR}/.wget-hsts
