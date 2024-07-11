@@ -81,4 +81,8 @@ echo "---Starting Server---"
 cd ${DATA_DIR}
 screen -S Mindustry -L -Logfile ${DATA_DIR}/masterLog.0 -d -m ${DATA_DIR}/runtime/${RUNTIME_NAME}/bin/java -jar ${DATA_DIR}/server-release.jar name ${SRV_NAME},host,${GAME_PARAMS}
 sleep 5
+if [ "${ENABLE_WEBCONSOLE}" == "true" ]; then
+    /opt/scripts/start-gotty.sh 2>/dev/null &
+fi
+screen -S watchdog -d -m /opt/scripts/start-watchdog.sh
 tail -F ${DATA_DIR}/masterLog.0
