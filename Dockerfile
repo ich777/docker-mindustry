@@ -7,11 +7,17 @@ RUN apt-get update && \
 	apt-get -y install --no-install-recommends curl screen && \
 	rm -rf /var/lib/apt/lists/*
 
+RUN wget -O /tmp/gotty.tar.gz https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linux_amd64.tar.gz && \
+	tar -C /usr/bin/ -xvf /tmp/gotty.tar.gz && \
+	rm -rf /tmp/gotty.tar.gz
+
 ENV DATA_DIR=/mindustry
 ENV GAME_V="latest"
 ENV SRV_NAME="DockerMindustry"
 ENV GAME_PARAMS=""
 ENV RUNTIME_NAME="basicjre"
+ENV ENABLE_WEBCONSOLE="true"
+ENV GOTTY_PARAMS="-w --title-format Mindustry"
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
