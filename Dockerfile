@@ -15,6 +15,7 @@ ENV DATA_DIR=/mindustry
 ENV GAME_V="latest"
 ENV SRV_NAME="DockerMindustry"
 ENV GAME_PARAMS=""
+ENV EXTRA_PARAMS="config "
 ENV RUNTIME_NAME="basicjre"
 ENV ENABLE_WEBCONSOLE="true"
 ENV GOTTY_PARAMS="-w --title-format Mindustry"
