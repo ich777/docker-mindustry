@@ -14,7 +14,6 @@ UPDATE NOTICE: If you set the GAME_V to 'latest' the container will always check
 | SRV_NAME | Servername goes here (you need to set a servername) | DockerMindustry |
 | GAME_PARAMS | Extra startup Parameters if needed (leave empty if not needed) | |
 | EXTRA_PARAMS | Remove to support older versions from Mindustry (only change if you know what you are doing!) | config  |
-| GAME_PARAMS | Extra startup Parameters if needed (leave empty if not needed) | |
 | UMASK | Permissions for newly created files. Don't change unless you are knowing what you are doing! | 000 |
 | UID | User Identifier | 99 |
 | GID | Group Identifier | 100 |
