@@ -3,7 +3,7 @@ This is a Basic Mindustry Server.
 
 UPDATE NOTICE: If you set the GAME_V to 'latest' the container will always check on startup for a new version or you can set it to whatever version you preferr eg: '100', '90',... (without quotes, upgrading and downgrading also possible).
 
->**WEB CONSOLE:** You can connect to the Minecraft console by opening your browser and go to HOSTIP:9010 (eg: 192.168.1.1:9031) or click on WebUI on the Docker page within Unraid.
+>**WEB CONSOLE:** You can connect to the Minecraft console by opening your browser and go to HOSTIP:9031 (eg: 192.168.1.1:9031) or click on WebUI on the Docker page within Unraid.
 
 ## Env params
 | Name | Value | Example |
