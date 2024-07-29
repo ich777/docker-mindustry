@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.authors="admin@minenet.at"
 LABEL org.opencontainers.image.source="https://github.com/ich777/docker-mindustry"
 
 RUN apt-get update && \
-	apt-get -y install --no-install-recommends curl screen && \
+	apt-get -y install --no-install-recommends curl screen default-jre && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN wget -O /tmp/gotty.tar.gz https://github.com/yudai/gotty/releases/download/v1.0.1/gotty_linux_amd64.tar.gz && \
@@ -16,7 +16,6 @@ ENV GAME_V="latest"
 ENV SRV_NAME="DockerMindustry"
 ENV GAME_PARAMS=""
 ENV EXTRA_PARAMS="config "
-ENV RUNTIME_NAME="basicjre"
 ENV ENABLE_WEBCONSOLE="true"
 ENV GOTTY_PARAMS="-w --title-format Mindustry"
 ENV UMASK=000
