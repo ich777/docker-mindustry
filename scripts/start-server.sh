@@ -5,6 +5,10 @@ if [ "${GAME_V}" == "latest" ]; then
 	GAME_V=$LAT_V
 fi
 
+if [ -d ${DATA_DIR}/runtime ]; then
+  rm -rf ${DATA_DIR}/runtime
+fi
+
 echo "---Checking for Mindustry Server executable ---"
 if [ -z "$CUR_V" ]; then
     cd ${DATA_DIR}
