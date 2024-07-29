@@ -5,39 +5,6 @@ if [ "${GAME_V}" == "latest" ]; then
 	GAME_V=$LAT_V
 fi
 
-echo "---Checking for 'runtime' folder---"
-if [ ! -d ${DATA_DIR}/runtime ]; then
-	echo "---'runtime' folder not found, creating...---"
-	mkdir ${DATA_DIR}/runtime
-else
-	echo "---'runtime' folder found---"
-fi
-
-echo "---Checking if Runtime is installed---"
-if [ -z "$(find ${DATA_DIR}/runtime -name jre*)" ]; then
-    if [ "${RUNTIME_NAME}" == "basicjre" ]; then
-    	echo "---Downloading and installing Runtime---"
-		cd ${DATA_DIR}/runtime
-		if wget -q -nc --show-progress --progress=bar:force:noscroll https://github.com/ich777/runtimes/raw/master/jre/basicjre.tar.gz ; then
-			echo "---Successfully downloaded Runtime!---"
-		else
-			echo "---Something went wrong, can't download Runtime, putting server in sleep mode---"
-			sleep infinity
-		fi
-        tar --directory ${DATA_DIR}/runtime -xvzf ${DATA_DIR}/runtime/basicjre.tar.gz
-        rm -R ${DATA_DIR}/runtime/basicjre.tar.gz
-    else
-    	if [ ! -d ${DATA_DIR}/runtime/${RUNTIME_NAME} ]; then
-        	echo "---------------------------------------------------------------------------------------------"
-        	echo "---Runtime not found in folder 'runtime' please check again! Putting server in sleep mode!---"
-        	echo "---------------------------------------------------------------------------------------------"
-        	sleep infinity
-        fi
-    fi
-else
-	echo "---Runtime found---"
-fi
-
 echo "---Checking for Mindustry Server executable ---"
 if [ -z "$CUR_V" ]; then
     cd ${DATA_DIR}
@@ -73,7 +40,6 @@ if [ ! -f ~/.screenrc ]; then
 bindkey \"^C\" echo 'Blocked. Please use to command \"exit\" to shutdown the server or close this window to exit the terminal.'" > ~/.screenrc
 fi
 
-export RUNTIME_NAME="$(ls -d ${DATA_DIR}/runtime/* | cut -d '/' -f4)"
 if [ -f ${DATA_DIR}/.wget-hsts ]; then
 	rm ${DATA_DIR}/.wget-hsts
 fi
@@ -84,7 +50,7 @@ chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting Server---"
 cd ${DATA_DIR}
-screen -S Mindustry -L -Logfile ${DATA_DIR}/masterLog.0 -d -m ${DATA_DIR}/runtime/${RUNTIME_NAME}/bin/java -jar ${DATA_DIR}/server-release.jar ${EXTRA_PARAMS}name ${SRV_NAME},host,${GAME_PARAMS}
+screen -S Mindustry -L -Logfile ${DATA_DIR}/masterLog.0 -d -m java -jar ${DATA_DIR}/server-release.jar ${EXTRA_PARAMS}name ${SRV_NAME},host,${GAME_PARAMS}
 sleep 5
 if [ "${ENABLE_WEBCONSOLE}" == "true" ]; then
     /opt/scripts/start-gotty.sh 2>/dev/null &
