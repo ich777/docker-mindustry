@@ -9,7 +9,6 @@ UPDATE NOTICE: If you set the GAME_V to 'latest' the container will always check
 | Name | Value | Example |
 | --- | --- | --- |
 | DATA_DIR | Folder for gamefile | /mindustry |
-| RUNTIME_NAME | Enter your extracted Runtime folder name. Don't change unless you are knowing what you are doing! | jre1.8.0_211 |
 | GAME_V | Preferred game version goes here (set to 'latest' to download the latest) | latest |
 | SRV_NAME | Servername goes here (you need to set a servername) | DockerMindustry |
 | GAME_PARAMS | Extra startup Parameters if needed (leave empty if not needed) | |
@@ -22,7 +21,6 @@ UPDATE NOTICE: If you set the GAME_V to 'latest' the container will always check
 ```
 docker run --name Mindustry -d \
 	-p 6567:6567 -p 6567:6567/udp -p 9031:8080 \
-	--env 'RUNTIME_NAME=jre1.8.0_211' \
 	--env 'GAME_V=latest' \
 	--env 'EXTRA_PARAMS=config ' \
 	--env 'SRV_NAME=DockerMindustry' \
